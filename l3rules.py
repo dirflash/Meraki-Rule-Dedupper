@@ -7,7 +7,6 @@ __copyright__ = "Copyright (c) 2022 Aaron Davis"
 __license__ = "MIT License"
 
 import configparser
-import logging
 import json
 import requests
 
