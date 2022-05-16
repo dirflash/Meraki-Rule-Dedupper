@@ -45,14 +45,14 @@ if __name__ == "__main__":
     data["rules"].pop(-1)
     data["rules"].append(new_rule)
 
-put_url = f"https://api.meraki.com/api/v1/networks/{net_id}/appliance/firewall/l3FirewallRules"
+    put_url = f"https://api.meraki.com/api/v1/networks/{net_id}/appliance/firewall/l3FirewallRules"
 
-put_payload = json.dumps(data)
-put_headers = {
-    "X-Cisco-Meraki-API-Key": meraki_api_key,
-    "Content-Type": "application/json",
-}
+    put_payload = json.dumps(data)
+    put_headers = {
+        "X-Cisco-Meraki-API-Key": meraki_api_key,
+        "Content-Type": "application/json",
+    }
 
-response = requests.request("PUT", put_url, headers=put_headers, data=put_payload)
+    response = requests.request("PUT", put_url, headers=put_headers, data=put_payload)
 
-print(f"Response status code: {response.status_code}")
+    print(f"Response status code: {response.status_code}")
