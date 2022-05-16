@@ -8,9 +8,14 @@ __license__ = "MIT License"
 
 import configparser
 import json
+from rich import print, box  # pylint: disable=redefined-builtin, unused-import
+from rich.console import Console
+from rich.table import Table
 import requests
 
 if __name__ == "__main__":
+
+    console = Console()
 
     config = configparser.ConfigParser()
     config.read("config.ini")
@@ -55,3 +60,46 @@ if __name__ == "__main__":
     response = requests.request("PUT", put_url, headers=put_headers, data=put_payload)
 
     print(f"Response status code: {response.status_code}")
+
+    response = requests.request("GET", get_url, headers=get_headers, data=get_payload)
+
+    data = response.json()
+
+    table = Table(title="L3 Firewall Rules")
+
+    FIRST_LOOP = True
+
+    for x in data["rules"]:
+        entry = data["rules"].index(x)
+        comment = x["comment"]
+        policy = x["policy"]
+        protocol = x["protocol"]
+        srcPort = x["srcPort"]
+        srcCidr = x["srcCidr"]
+        destPort = x["destPort"]
+        destCidr = x["destCidr"]
+        syslogEnabled = x["syslogEnabled"]
+        if FIRST_LOOP is True:
+            table.add_column("Rule", style="red")
+            table.add_column("Comment", style="red", no_wrap=True)
+            table.add_column("Policy", style="red")
+            table.add_column("Protocol", style="red")
+            table.add_column("Src Port", style="red")
+            table.add_column("Src CIDR", style="red")
+            table.add_column("Dest Port", style="red")
+            table.add_column("Dest CIDR", style="red")
+            table.add_column("SYSLOG", style="red")
+        table.add_row(
+            str(entry),
+            comment,
+            policy,
+            protocol,
+            srcPort,
+            srcCidr,
+            destPort,
+            destCidr,
+            str(syslogEnabled),
+        )
+        FIRST_LOOP = False
+
+    console.print(table)
