@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""This script obtains collection information from Envision Solar Panels"""
+"""This is a very rough script that adds a static layer 3 firewall rule to a Meraki MX security appliance."""
 
 __author__ = "Aaron Davis"
 __version__ = "0.0.1"
