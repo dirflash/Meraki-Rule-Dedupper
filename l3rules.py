@@ -92,6 +92,7 @@ if __name__ == "__main__":
             destCidr,
             str(syslogEnabled),
         )
-        FIRST_LOOP = False
 
     console.print(table)
+
+    FIRST_LOOP = False
