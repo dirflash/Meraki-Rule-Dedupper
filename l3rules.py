@@ -70,6 +70,7 @@ if __name__ == "__main__":
         destPort = x["destPort"]
         destCidr = x["destCidr"]
         syslogEnabled = x["syslogEnabled"]
+
         if FIRST_LOOP is True:
             table.add_column("Rule", style="red")
             table.add_column("Comment", style="red", no_wrap=True)
@@ -81,6 +82,7 @@ if __name__ == "__main__":
             table.add_column("Dest CIDR", style="red")
             table.add_column("SYSLOG", style="red")
             table.add_column("Dup Rule", style="red")
+
         table.add_row(
             str(entry),
             comment,
@@ -92,7 +94,6 @@ if __name__ == "__main__":
             destCidr,
             str(syslogEnabled),
         )
+        FIRST_LOOP = False
 
     console.print(table)
-
-    FIRST_LOOP = False
