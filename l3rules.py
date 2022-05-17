@@ -89,6 +89,7 @@ if __name__ == "__main__":
             table.add_column("Dest Port", style="red")
             table.add_column("Dest CIDR", style="red")
             table.add_column("SYSLOG", style="red")
+            table.add_column("Dup Rule", style="red")
         table.add_row(
             str(entry),
             comment,
