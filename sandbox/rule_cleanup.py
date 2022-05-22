@@ -1,3 +1,18 @@
+#!/usr/bin/env python3
+"""
+This script:
+    1) retrieves L3 Firewall rules from the Meraki dashboard
+    2) evaluates the rules for duplicates
+    3) cleans up the duplicates
+    4) uploads the sanitized ruleset back to the Meraki Dashboard.
+
+"""
+
+__author__ = "Aaron Davis"
+__version__ = "0.2.0"
+__copyright__ = "Copyright (c) 2022 Aaron Davis"
+__license__ = "MIT License"
+
 import configparser
 import logging
 from rich import print, box  # pylint: disable=redefined-builtin, unused-import
@@ -5,6 +20,43 @@ from rich.console import Console
 from rich.logging import RichHandler
 from rich.table import Table
 import requests
+from requests.adapters import HTTPAdapter, Retry
+from requests.exceptions import Timeout
+
+
+def get_rules(n_id, api_key):
+    """Get L3 firewall rules from Meraki dashboard
+
+    Args:
+        n_id (str): Meraki network ID to retreive rules from
+        api_key (str): Meraki dashboard API key
+
+    Returns:
+        _type_: _description_
+    """
+    console.log("[yellow]Entered get_rules[/]")
+    get_url = f"https://api.meraki.com/api/v1/networks/{n_id}/appliance/firewall/l3FirewallRules"
+    get_payload = {}
+    get_headers = {"X-Cisco-Meraki-API-Key": api_key}
+    retries = Retry(
+        total=3, backoff_factor=1, status_forcelist=[429, 500, 502, 503, 504]
+    )
+    adapter = HTTPAdapter(max_retries=retries)
+    http = requests.Session()
+    http.mount("http://", adapter)
+    try:
+        response = http.get(get_url, headers=get_headers, data=get_payload, timeout=5)
+    except Timeout:
+        print("[red bold]The 'get L3 rules' request timed out![/]")
+    else:
+        console.log(
+            f"[dark_green]L3 rules retreived from Meraki dashboard in {response.elapsed} secs [/]"
+            f"[dark_green]with response status code of {response.status_code}.[/]"
+        )
+    data = response.json()
+    console.log("[yellow]Exiting get_rules[/]")
+    return data
+
 
 console = Console()
 
@@ -28,16 +80,9 @@ config.read("config.ini")
 meraki_api_key = config["DEFAULT"]["meraki_api_key"]
 net_id = config["DEFAULT"]["net_id"]
 
-get_url = f"https://api.meraki.com/api/v1/networks/{net_id}/appliance/firewall/l3FirewallRules"
-get_payload = {}
-get_headers = {"X-Cisco-Meraki-API-Key": meraki_api_key}
-response = requests.request("GET", get_url, headers=get_headers, data=get_payload)
-data = response.json()
+get_response = get_rules(net_id, meraki_api_key)
 
-response = requests.request("GET", get_url, headers=get_headers, data=get_payload)
-
-data = response.json()
-l3_rules = data["rules"]
+l3_rules = get_response["rules"]
 table_before = Table(title="L3 Firewall Rules Before")
 FIRST_LOOP = True
 rules = []
@@ -100,7 +145,7 @@ for x in l3_rules:
     )
     FIRST_LOOP = False
 
-console.log("[yellow]Delete 'Default rule'.")
+console.log("[yellow]Delete 'Default rule'.[/]")
 rules.pop(-1)
 b4_compare.pop(-1)
 
