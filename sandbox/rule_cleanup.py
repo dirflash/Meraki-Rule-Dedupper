@@ -207,6 +207,7 @@ console.log("[orange1]Clean-up complete. Updating L3 firewall rules.[/]\n")
 table_after = Table(title="L3 Firewall Rules After")
 
 table_after.add_column("Rule", style="red")
+table_after.add_column("Comment", style="red")
 table_after.add_column("Policy", style="red")
 table_after.add_column("Protocol", style="red")
 table_after.add_column("Src Port", style="red")
@@ -226,7 +227,10 @@ for rule in EVAL_RESULT:
     exit_destCidr = rule["destCidr"]
     exit_syslogEnabled = rule["syslogEnabled"]
 
+    EXIT_COMMENT = "---"
+
     EXIT = [
+        EXIT_COMMENT,
         exit_policy,
         exit_protocol,
         exit_srcPort,
@@ -235,8 +239,6 @@ for rule in EVAL_RESULT:
         exit_destCidr,
         exit_syslogEnabled,
     ]
-
-    EXIT_COMMENT = "---"
 
     table_after.add_row(
         str(exit_entry),
