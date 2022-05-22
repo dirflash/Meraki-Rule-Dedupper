@@ -51,7 +51,7 @@ def get_rules(n_id, api_key):
     else:
         console.log(
             f"[dark_green]L3 rules retreived from Meraki dashboard in {response.elapsed} secs [/]"
-            f"[dark_green]with response status code of {response.status_code}.[/]"
+            f"[dark_green]with HTTP response status code of {response.status_code}.[/]"
         )
     data = response.json()
     console.log("[yellow]Exiting get_rules[/]")
