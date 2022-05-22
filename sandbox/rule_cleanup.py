@@ -216,6 +216,8 @@ table_after.add_column("Dest Port", style="red")
 table_after.add_column("Dest CIDR", style="red")
 table_after.add_column("SYSLOG", style="red")
 
+EXIT_COMMENT = "---"
+
 for rule in EVAL_RESULT:
 
     exit_entry = EVAL_RESULT.index(rule)
@@ -226,8 +228,6 @@ for rule in EVAL_RESULT:
     exit_destPort = rule["destPort"]
     exit_destCidr = rule["destCidr"]
     exit_syslogEnabled = rule["syslogEnabled"]
-
-    EXIT_COMMENT = "---"
 
     EXIT = [
         EXIT_COMMENT,
