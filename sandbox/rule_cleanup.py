@@ -32,7 +32,7 @@ def get_rules(n_id, api_key):
         api_key (str): Meraki dashboard API key
 
     Returns:
-        _type_: _description_
+        json: L3 rules found in Meraki network
     """
     console.log("[yellow]Entered get_rules[/]")
     get_url = f"https://api.meraki.com/api/v1/networks/{n_id}/appliance/firewall/l3FirewallRules"
