@@ -190,7 +190,6 @@ for i, v in enumerate(rules):
         EVAL_SAMPLE[i].update({EVAL_KEYS[x]: b4_compare[i][x]})
 
 SAMPLE_LEN = len(EVAL_SAMPLE)
-
 console.log(f"[purple]Before evaluation, there are {SAMPLE_LEN} rules.[/]")
 
 EVAL_RESULT = []
