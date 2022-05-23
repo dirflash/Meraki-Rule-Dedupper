@@ -13,6 +13,7 @@ __version__ = "0.2.0"
 __copyright__ = "Copyright (c) 2022 Aaron Davis"
 __license__ = "MIT License"
 
+import json
 import configparser
 import logging
 from rich import print, box  # pylint: disable=redefined-builtin, unused-import
@@ -35,7 +36,8 @@ def get_rules(n_id, api_key):
         data (json): L3 rules found in Meraki network
     """
     console.log("[yellow]Entered get_rules[/]")
-    get_url = f"https://api.meraki.com/api/v1/networks/{n_id}/appliance/firewall/l3FirewallRules"
+    base_url = "https://api.meraki.com/api/v1/networks/"
+    get_url = f"{base_url}{n_id}/appliance/firewall/l3FirewallRules"
     get_payload = {}
     get_headers = {"X-Cisco-Meraki-API-Key": api_key}
     retries = Retry(
@@ -45,17 +47,57 @@ def get_rules(n_id, api_key):
     http = requests.Session()
     http.mount("http://", adapter)
     try:
-        response = http.get(get_url, headers=get_headers, data=get_payload, timeout=5)
+        get_l3_rules = http.get(
+            get_url, headers=get_headers, data=get_payload, timeout=5
+        )
     except Timeout:
         print("[red bold]The 'get L3 rules' request timed out![/]")
     else:
         console.log(
-            f"[dark_green]L3 rules retrieved from Meraki dashboard in {response.elapsed} secs [/]"
-            f"[dark_green]with HTTP response status code of {response.status_code}.[/]"
+            f"[dark_green]L3 rules retrieved from Meraki dashboard in [/]"
+            f"[dark_green]{get_l3_rules.elapsed} secs [/]"
+            f"[dark_green]with HTTP response status code of {get_l3_rules.status_code}.[/]"
         )
-    data = response.json()
+    data = get_l3_rules.json()
     console.log("[yellow]Exiting get_rules[/]")
     return data
+
+
+def put_rules(n_id, api_key, updated_rules):
+    """PUT's de-duplicated L3 firewall rules
+
+    Args:
+        n_id (str): Meraki network ID to retreive rules from
+        api_key (str): Meraki dashboard API key
+    """
+    console.log("[yellow]Entered put_rules[/]")
+    base_url = "https://api.meraki.com/api/v1/networks/"
+    put_url = f"{base_url}{n_id}/appliance/firewall/l3FirewallRules"
+    put_payload = json.dumps(updated_rules)
+    put_headers = {
+        "X-Cisco-Meraki-API-Key": api_key,
+        "Content-Type": "application/json",
+    }
+    retries = Retry(
+        total=3, backoff_factor=1, status_forcelist=[429, 500, 502, 503, 504]
+    )
+    adapter = HTTPAdapter(max_retries=retries)
+    http = requests.Session()
+    http.mount("http://", adapter)
+    try:
+        put_l3_rules = http.put(
+            put_url, headers=put_headers, data=put_payload, timeout=5
+        )
+        # response = requests.request("PUT", put_url, headers=put_headers, data=put_payload)
+    except Timeout:
+        print("[red bold]The 'get L3 rules' request timed out![/]")
+    else:
+        console.log(
+            f"[dark_green]L3 rules uploaded to Meraki dashboard in [/]"
+            f"[dark_green]{put_l3_rules.elapsed} secs [/]"
+            f"[dark_green]with HTTP response status code of {put_l3_rules.status_code}.[/]"
+        )
+    console.log("[yellow]Exiting put_rules[/]")
 
 
 console = Console()
@@ -259,4 +301,10 @@ console.log(
     "[bright_cyan]Default rule will be automatically added by Meraki API at upload.[/]"
 )
 
-console.log("\n[bright_green]Ready to POST updated ruleset to the Meraki network.[/]")
+console.log("\n[bright_green]Ready to PUT updated ruleset to the Meraki network.[/]")
+
+NEW_RULES = {"rules": EVAL_RESULT}
+
+put_rules(net_id, meraki_api_key, NEW_RULES)
+
+print("[purple]All done...[/]")
