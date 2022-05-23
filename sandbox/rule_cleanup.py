@@ -184,10 +184,10 @@ EVAL_KEYS = [
     "syslogEnabled",
 ]
 
-for y in range(RULE_CNT):
-    EVAL_SAMPLE[y] = {}
-    for x in range(len(EVAL_KEYS)):
-        EVAL_SAMPLE[y].update({EVAL_KEYS[x]: b4_compare[y][x]})
+for i, v in enumerate(rules):
+    EVAL_SAMPLE[i] = {}
+    for x, w in enumerate(EVAL_KEYS):
+        EVAL_SAMPLE[i].update({EVAL_KEYS[x]: b4_compare[i][x]})
 
 SAMPLE_LEN = len(EVAL_SAMPLE)
 
