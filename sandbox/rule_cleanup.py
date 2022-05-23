@@ -307,4 +307,4 @@ NEW_RULES = {"rules": EVAL_RESULT}
 
 put_rules(net_id, meraki_api_key, NEW_RULES)
 
-print("[purple]All done...[/]")
+print("[green3]All done...[/]")
