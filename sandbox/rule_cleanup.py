@@ -50,7 +50,7 @@ def get_rules(n_id, api_key):
         print("[red bold]The 'get L3 rules' request timed out![/]")
     else:
         console.log(
-            f"[dark_green]L3 rules retreived from Meraki dashboard in {response.elapsed} secs [/]"
+            f"[dark_green]L3 rules retrieved from Meraki dashboard in {response.elapsed} secs [/]"
             f"[dark_green]with HTTP response status code of {response.status_code}.[/]"
         )
     data = response.json()
@@ -201,7 +201,7 @@ RESULT_LEN = len(EVAL_RESULT)
 
 console.log(f"[purple]After evaluation, that are {RESULT_LEN} rules.[/]")
 console.log(f"[red bold]Deleted {SAMPLE_LEN - RESULT_LEN} additional rules.[/]")
-console.log("[orange1]Clean-up complete. Updating L3 firewall rules.[/]\n")
+console.log("[orange1]Clean-up complete.[/]\n")
 
 table_after = Table(title="L3 Firewall Rules After")
 
