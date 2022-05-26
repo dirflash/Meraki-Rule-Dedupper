@@ -46,3 +46,17 @@ Super easy! You can find the instructions in this [Meraki doc](https://documenta
 ## How do I get my Meraki Org ID and Network ID?
 
 Also super easy! You can find the instructions in the [Meraki API documentation](https://documentation.meraki.com/General_Administration/Other_Topics/Cisco_Meraki_Dashboard_API).
+
+## Known Issues
+
+## Getting help
+
+If you have questions, concerns, bug reports, etc., please create an issue against this repository.
+
+## Getting involved
+
+## Author(s)
+
+This project was written and is maintained by the following individuals:
+
+- Aaron Davis <aarodavi@cisco.com>
