@@ -13,6 +13,7 @@ __version__ = "0.2.0"
 __copyright__ = "Copyright (c) 2022 Aaron Davis"
 __license__ = "MIT License"
 
+import sys
 import json
 import configparser
 import logging
@@ -50,8 +51,10 @@ def get_rules(n_id, api_key):
         get_l3_rules = http.get(
             get_url, headers=get_headers, data=get_payload, timeout=5
         )
-    except Timeout:
+    except Timeout as timeout_error:
         print("[red bold]The 'get L3 rules' request timed out![/]")
+        console.log(timeout_error)
+        sys.exit()
     else:
         console.log(
             f"[dark_green]L3 rules retrieved from Meraki dashboard in [/]"
@@ -304,6 +307,9 @@ console.log(
 console.log("\n[bright_green]Ready to PUT updated ruleset to the Meraki network.[/]")
 
 NEW_RULES = {"rules": EVAL_RESULT}
+
+print(b4_compare)
+print(EVAL_SAMPLE)
 
 put_rules(net_id, meraki_api_key, NEW_RULES)
 
