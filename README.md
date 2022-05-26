@@ -55,8 +55,6 @@ None.
 
 If you have questions, concerns, bug reports, etc., please create an issue against this repository.
 
-## Getting involved
-
 ## Author(s)
 
 This project was written and is maintained by the following individuals:
