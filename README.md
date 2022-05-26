@@ -25,4 +25,10 @@ All the API keys are stored in a config.ini file using [configparser](https://do
 
 ### Project file structure
 
-![This is a sample file structure](https://github.com/dirflash/psirt/blob/master/images/file_structure.jpg)
+![This is a sample file structure](https://github.com/dirflash/Meraki_L3_Rules/blob/master/images/file_structure.JPG)
+
+## Usage
+
+```
+$  python.exe rule_cleanup.py
+```
