@@ -2,10 +2,10 @@
 
 ## **This Python script:**
 
-1. connects to a Meraki network
-2. evaluates the current L3 firewall rules
-3. removes duplicate rules
-4. uploads a clean, non-duplicated set up rules.
+1. Connects to a Meraki network
+2. Evaluates the current L3 firewall rules
+3. Removes duplicate rules
+4. Uploads a clean, non-duplicated set up rules.
 
 ## What problem is this script trying to solve?
 
