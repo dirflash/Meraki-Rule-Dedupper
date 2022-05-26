@@ -49,6 +49,8 @@ Also super easy! You can find the instructions in the [Meraki API documentation]
 
 ## Known Issues
 
+None.
+
 ## Getting help
 
 If you have questions, concerns, bug reports, etc., please create an issue against this repository.
