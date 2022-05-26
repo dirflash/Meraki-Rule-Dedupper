@@ -11,6 +11,8 @@
 
 No doubt - The Meraki dashboard is great. However, it is possible to create duplicate L3 firewall rules. Overtime, this can result in an unnecessary amount of unused rules. This script compares the current set of rules, minus the comments, and uploads a clean new set of L3 firewall rules without the duplicates.
 
+![Duplicate rules]()
+
 ## Requirements
 
 This script requires a Python environment and the libraries included in the [requirements.txt](https://github.com/dirflash/Meraki_L3_Rules/blob/master/requirements.txt) file.
