@@ -91,9 +91,10 @@ def put_rules(n_id, api_key, updated_rules):
         put_l3_rules = http.put(
             put_url, headers=put_headers, data=put_payload, timeout=5
         )
-        # response = requests.request("PUT", put_url, headers=put_headers, data=put_payload)
-    except Timeout:
+    except Timeout as timeout_error:
         print("[red bold]The 'get L3 rules' request timed out![/]")
+        console.log(timeout_error)
+        sys.exit()
     else:
         console.log(
             f"[dark_green]L3 rules uploaded to Meraki dashboard in [/]"
@@ -304,13 +305,14 @@ console.log(
     "[bright_cyan]Default rule will be automatically added by Meraki API at upload.[/]"
 )
 
-console.log("\n[bright_green]Ready to PUT updated ruleset to the Meraki network.[/]")
-
 NEW_RULES = {"rules": EVAL_RESULT}
 
-print(b4_compare)
-print(EVAL_SAMPLE)
-
-put_rules(net_id, meraki_api_key, NEW_RULES)
+if EVAL_SAMPLE == EVAL_RESULT:
+    print("[green]No change in rules.[/]")
+else:
+    console.log(
+        "\n[bright_green]Ready to PUT updated ruleset to the Meraki network.[/]"
+    )
+    put_rules(net_id, meraki_api_key, NEW_RULES)
 
 print("[green3]All done...[/]")
