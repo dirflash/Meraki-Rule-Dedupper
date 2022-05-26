@@ -21,7 +21,7 @@ Import requirements file: `pip install -r requirements.txt`
 
 All the API keys are stored in a config.ini file using [configparser](https://docs.python.org/3/library/configparser.html). Your config.ini file should look like this:
 
-![Sample config.ini file](https://github.com/dirflash/psirt/blob/master/images/config.jpg)
+![Sample config.ini file](https://github.com/dirflash/Meraki_L3_Rules/blob/master/images/config.jpg)
 
 ### Project file structure
 
