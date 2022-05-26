@@ -38,3 +38,11 @@ All the API keys are stored in a config.ini file using [configparser](https://do
 ```
 $  python.exe rule_cleanup.py
 ```
+
+## How do I get my Meraki API key?
+
+Super easy! You can find the instructions in this [Meraki doc](https://documentation.meraki.com/General_Administration/Other_Topics/Cisco_Meraki_Dashboard_API).
+
+## How do I get my Meraki Org ID and Network ID?
+
+Also super easy! You can find the instructions in the [Meraki API documentation](https://documentation.meraki.com/General_Administration/Other_Topics/Cisco_Meraki_Dashboard_API).
