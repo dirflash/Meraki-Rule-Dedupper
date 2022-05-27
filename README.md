@@ -1,4 +1,4 @@
-# Cisco Meraki L3 Rule Clean Up
+# Cisco Meraki L3 Rule Deduplicator
 
 ## **This Python script:**
 
