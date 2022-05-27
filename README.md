@@ -1,6 +1,6 @@
 <br/>
 <a href="https://github.com/dirflash/Meraki_L3_Rules" target="blank_">
-    <img height="100" alt="HTTPie" src="https://github.com/dirflash/Meraki_L3_Rules/blob/master/images/Deduper.svg" />
+    <img height="500" alt="HTTPie" src="https://github.com/dirflash/Meraki_L3_Rules/blob/master/images/Deduper.svg" />
 </a>
 <br/>
 
