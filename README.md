@@ -1,5 +1,7 @@
 # Cisco Meraki L3 Rule Deduplicator
 
+![Deduplicator]()
+
 ## **This Python script:**
 
 1. Connects to a Meraki network
