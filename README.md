@@ -1,6 +1,6 @@
 # Cisco Meraki L3 Rule Deduplicator
 
-![Deduplicator](https://github.com/dirflash/Meraki_L3_Rules/blob/master/images/Deduper.jpg)
+![Deduplicator](https://github.com/dirflash/Meraki_L3_Rules/blob/master/images/Debuper.jpg)
 
 ## **This Python script:**
 
