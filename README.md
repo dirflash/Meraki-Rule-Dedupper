@@ -1,8 +1,6 @@
 ![Deduper Logo](https://github.com/dirflash/Meraki_L3_Rules/blob/master/images/Deduper.svg)
 
-# Cisco Meraki L3 Rule Deduplicator: Get rid of those
-
-# pesky duplicate firewall rules
+# Cisco Meraki L3 Rule Deduplicator: Get rid of those pesky duplicate firewall rules
 
 ## **This Python script:**
 
