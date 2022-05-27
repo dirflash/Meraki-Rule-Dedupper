@@ -1,7 +1,7 @@
-<a href="https://github.com/dirflash/Meraki_L3_Rules" target="blank_">
-    <img height="500" alt="HTTPie" src="https://github.com/dirflash/Meraki_L3_Rules/blob/master/images/Deduper.svg" />
-</a>
+<img src="https://github.com/dirflash/Meraki_L3_Rules/blob/master/images/Deduper.svg" alt'"Deduper logo">
+
 # Cisco Meraki L3 Rule Deduplicator: Get rid of those
+
 # pesky duplicate firewall rules
 
 ## **This Python script:**
