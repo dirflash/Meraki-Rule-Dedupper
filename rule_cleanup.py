@@ -30,6 +30,7 @@ import sys
 import json
 import configparser
 import logging
+import traceback
 from rich import print, box  # pylint: disable=redefined-builtin, unused-import
 from rich.console import Console
 from rich.logging import RichHandler
@@ -106,7 +107,7 @@ def put_rules(n_id, api_key, updated_rules):
         )
     except Timeout as timeout_error:
         print("[red bold]The 'get L3 rules' request timed out![/]")
-        console.log(timeout_error)
+        print("".join(traceback.format_tb(timeout_error.__traceback__)))
         sys.exit()
     else:
         console.log(
