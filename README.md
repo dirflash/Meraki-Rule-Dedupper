@@ -1,3 +1,5 @@
+[![published](https://static.production.devnetcloud.com/codeexchange/assets/images/devnet-published.svg)](https://developer.cisco.com/codeexchange/github/repo/dirflash/Meraki_L3_Rules)
+
 ![Deduper Logo](https://github.com/dirflash/Meraki_L3_Rules/blob/master/images/Deduper.svg)
 
 # Cisco Meraki L3 Rule Deduplicator: Get rid of those pesky duplicate firewall rules
