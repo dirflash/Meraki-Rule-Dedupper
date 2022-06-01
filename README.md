@@ -49,6 +49,14 @@ Super easy! You can find the instructions in this [Meraki doc](https://documenta
 
 Also super easy! You can find the instructions in the [Meraki API documentation](https://documentation.meraki.com/General_Administration/Other_Topics/Cisco_Meraki_Dashboard_API).
 
+## References
+
+This script only evaluates the existing layer 3 firewall rules and removes any duplicated rules. Here are a few examples of scripts that will allow you to programmatically add layer 3 firewall rules.
+
+1. [Using a Docker container by Oleksii Borisenko - @oborys](https://developer.cisco.com/codeexchange/github/repo/oborys/Automation_Update_the_L3_firewall_rules_Meraki/)
+2. [GVE DevNet Meraki MX Firewall Provisioner by Jorge Banegas](https://developer.cisco.com/codeexchange/github/repo/gve-sw/GVE_DevNet_Meraki_MX_Firewall_Provisioner/)
+3. [Add Meraki MX L3 Firewall Rule to Networks by Gerardo Chaves - @ggchaves](https://developer.cisco.com/codeexchange/github/repo/CiscoSE/AddMerakiMXL3FirewallRuleToNetworks/)
+
 ## Known Issues
 
 None.
