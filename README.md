@@ -61,7 +61,7 @@ This script only evaluates the existing layer 3 firewall rules and removes any d
 
 ## Known Issues
 
-None.
+None
 
 ## Getting help
 
